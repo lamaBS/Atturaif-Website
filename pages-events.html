@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Atturaif - events</title>
+        <meta name="description" content="Atturaif is An Interactive Tour Guide Application and has an Admin website for management">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Google Fonts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script>
+          WebFont.load({
+            google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+          });
+        </script>
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/img/logo-16x16.png">
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="assets/vendors/css/base/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/css/base/elisyam-1.5.min.css">
+        <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    </head>
+    <body id="page-top">
+        <!-- Begin Preloader -->
+        <div id="preloader">
+            <div class="canvas">
+                <img src="assets/img/logo.png" alt="logo" class="loader-logo">
+                <div class="spinner"></div>   
+            </div>
+        </div>
+        <!-- End Preloader -->
+        <div class="page db-social">
+            <!-- Begin Header -->
+            <header class="header">
+                <nav class="navbar fixed-top">        
+                   
+                    <!-- Begin Topbar -->
+                    <div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
+                        <!-- Begin Logo -->
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand">
+                                <div class="brand-image brand-big">
+                                    <img src="assets/img/logo.png" alt="logo" style="width: 70px;" class="logo-big">
+                                </div>
+                                <div class="brand-image brand-small">
+                                    <img src="assets/img/logo.png" alt="logo" class="logo-small">
+                                </div>
+                            </a>
+                            <!-- Toggle Button -->
+                            <a id="toggle-btn" href="#" class="menu-btn active">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                            <!-- End Toggle -->
+                        </div>
+                        <!-- End Logo -->
+                    </div>
+                    <!-- End Topbar -->
+                </nav>
+            </header>
+            <!-- End Header -->
+            <!-- Begin Page Content -->
+            <div class="page-content d-flex align-items-stretch">
+                
+                <!-- Begin Content -->
+                <div class="content-inner compact">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-11">
+                                <!-- Begin Page Header-->
+                                <div class="page-header pr-0 pl-0">
+                                    <div class="d-flex align-items-center">
+                                        <h2 class="page-header-title">Events</h2>
+                                        <div>
+                                        <div class="page-header-tools">
+                                            <a class="btn btn-gradient-01" href="add-event.html">Add Event</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Page Header --><center>
+                                                              <ol id="tourname"></ol></center>
+
+                                        <!-- End Card 5 -->
+                                    </div>
+
+                                    
+                                </div>
+                                <!-- End Row -->
+                            </div>
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                    <!-- End Container -->
+                    
+                    <a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
+                    
+                    <!-- Begin Delete Modal -->
+        <div id="basic-modal" class="modal modal-centered fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Event Name</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                                <span class="sr-only">close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to Delete it? </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" class="dropdown-item remove"> Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Delete Modal -->
+
+                    
+
+        </div>
+                <!-- End Content -->
+          
+        <!-- Begin Vendor Js -->
+        <script src="assets/vendors/js/base/jquery.min.js"></script>
+        <script src="assets/vendors/js/base/core.min.js"></script>
+        <!-- End Vendor Js -->
+        <!-- Begin Page Vendor Js -->
+        <script src="assets/vendors/js/nicescroll/nicescroll.min.js"></script>
+        <script src="assets/vendors/js/app/app.min.js"></script>
+        <!-- End Page Vendor Js -->
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCeyIbiJJVpSxhjkkVYt7S0I9zJ_wZoii4",
+        authDomain: "atturaifsystem.firebaseapp.com",
+        databaseURL: "https://atturaifsystem.firebaseio.com",
+        projectId: "atturaifsystem",
+        storageBucket: "atturaifsystem.appspot.com",
+        messagingSenderId: "634716072857",
+        appId: "1:634716072857:web:0c0d748300f4f335444108",
+        measurementId: "G-ZHTNVKE6JM"
+};
+  firebase.initializeApp(firebaseConfig);
+var tourRef = firebase.database().ref('Events');
+        tourRef.on('value', gotData); 
+
+function gotData(data){
+    
+   // var tour = document.getElementById('tours').selectAll('.tours');
+ //var tour=selectAll('.tours');
+    
+    var tours = data.val();
+    var keys = Object.keys(tours);
+    console.log(keys);
+    
+    var createClickHandler = function(arg) {
+  return function() { 
+      document.getElementById("tourname").innerHTML = "";
+
+      tourRef.child(arg).remove();  };
+}
+    
+       var createClickHandler1 = function(arg) {
+  return function() {
+  
+      localStorage.setItem('key', arg);
+    location.replace("edit-event.html");
+
+  }
+}
+    
+    
+    for(var i = 0 ; i<keys.length;i++)
+    {
+        var k = keys[i];
+        var tourname = tours[k].EventNameEN; 
+        //console.log(tourname);
+          
+
+        var lis = document.createElement('LI'); 
+        var textnode = document.createTextNode(tourname);
+        lis.appendChild(textnode);
+        lis.className="tours";
+        document.getElementById("tourname").appendChild(lis);
+                   var btn = document.createElement("A"); 
+       btn.href="#";
+btn.className="btn btn-secondary ripple";
+        btn.innerHTML = "delete";
+   
+         btn.onclick = createClickHandler(k);
+ 
+           document.getElementById("tourname").appendChild(btn); 
+
+   var btn1 = document.createElement("A"); 
+       btn1.href="#";
+btn1.className="btn btn-gradient-01";
+        btn1.innerHTML = "edit";
+   
+         btn1.onclick = createClickHandler1(k);
+ 
+           document.getElementById("tourname").appendChild(btn1);
+    }
+    
+   
+    
+}
+ 
+    
+    </script>
+  </body>
+</html>

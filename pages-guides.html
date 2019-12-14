@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Atturaif - Guides</title>
+        <meta name="description" content="Atturaif Website is a Web App that the Admin manage the App requests">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Google Fonts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script>
+          WebFont.load({
+            google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+          });
+        </script>
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/img/alogo.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/img/logo-16x16.png">
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="assets/vendors/css/base/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/css/base/elisyam-1.5.min.css">
+        <link rel="stylesheet" href="assets/css/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/owl-carousel/owl.theme.min.css">
+       
+    </head>
+    <body id="page-top">
+        <!-- Begin Preloader -->
+        <div id="preloader">
+            <div class="canvas">
+                <img src="assets/img/logo.png" alt="logo" class="loader-logo">
+                <div class="spinner"></div>   
+            </div>
+        </div>
+        <!-- End Preloader -->
+        <div class="page">
+            <!-- Begin Header -->
+            <header class="header">
+                <nav class="navbar fixed-top">        
+                   
+                    <!-- Begin Topbar -->
+                    <div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
+                        <!-- Begin Logo -->
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand">
+                                <div class="brand-image brand-big">
+                                    <img src="assets/img/logo.png" alt="logo" style="width: 70px;" class="logo-big">
+                                </div>
+                                <div class="brand-image brand-small">
+                                    <img src="assets/img/logo.png" alt="logo" class="logo-small">
+                                </div>
+                            </a>
+                            <!-- Toggle Button -->
+                            <a id="toggle-btn" href="#" class="menu-btn active">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                            <!-- End Toggle -->
+                        </div>
+                        <!-- End Logo -->
+                    </div>
+                    <!-- End Topbar -->
+                </nav>
+            </header>
+            <!-- End Header -->
+            <!-- Begin Page Content -->
+            <div class="page-content d-flex align-items-stretch">
+                
+                <div class="content-inner">
+                    <div class="container-fluid">
+                        <!-- Begin Page Header-->
+                        <div class="row">
+                            <div class="page-header">
+	                            <div class="d-flex align-items-center">
+	                                <h2 class="page-header-title">Guides</h2>
+	                                <div>
+			                            <ul class="breadcrumb">
+			                                <li class="breadcrumb-item"><div class="page-header-tools">
+                                                <a class="btn btn-outline-primary" href="add-guide.html">Add Guide</a>
+                                            </div></li>
+			                            </ul>
+	                                </div>
+	                            </div>
+                            </div>
+                        </div>
+                        <center>
+<ol id="tourname"></ol>
+               </center>         
+                    <!-- End Container -->
+                   
+                   <!--num of availabile guides->
+                    <div class="col d-flex align-items-center">
+                        <div class="mr-auto p-2">
+                            <span class="display-items"> num of availabile guides: 4 </span>
+                        </div>
+                    </div>
+                     <!-end num of availabile guides-->
+
+                    <a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
+                    
+                </div>
+            </div>
+            <!-- End Page Content -->
+            </div>    </div>
+        
+        <!-- Begin Vendor Js -->
+        <script src="assets/vendors/js/base/jquery.min.js"></script>
+        <script src="assets/vendors/js/base/core.min.js"></script>
+        <!-- End Vendor Js -->
+        <!-- Begin Page Vendor Js -->
+        <script src="assets/vendors/js/nicescroll/nicescroll.min.js"></script>
+        <script src="assets/vendors/js/owl-carousel/owl.carousel.min.js"></script>
+        <script src="assets/vendors/js/app/app.min.js"></script>
+        <!-- End Page Vendor Js -->
+        <!-- Begin Page Snippets -->
+        <script src="assets/js/app/contact/contact.min.js"></script>
+        <!-- End Page Snippets -->
+        
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+<script>
+const config = {
+    apiKey: "AIzaSyCeyIbiJJVpSxhjkkVYt7S0I9zJ_wZoii4",
+    authDomain: "atturaifsystem.firebaseapp.com",
+    databaseURL: "https://atturaifsystem.firebaseio.com",
+    projectId: "atturaifsystem",
+    storageBucket: "atturaifsystem.appspot.com",
+    messagingSenderId: "634716072857",
+    appId: "1:634716072857:web:0c0d748300f4f335444108",
+    measurementId: "G-ZHTNVKE6JM"
+};
+  firebase.initializeApp(config);
+var tourRef = firebase.database().ref('guide/available_guides');
+        tourRef.on('value', gotData); 
+
+    function gotData(data) {
+
+        // var tour = document.getElementById('tours').selectAll('.tours');
+        //var tour=selectAll('.tours');
+
+        var tours = data.val();
+        var keys = Object.keys(tours);
+        console.log(keys);
+
+        var createClickHandler = function (arg) {
+            return function () {
+                document.getElementById("tourname").innerHTML = "";
+
+                tourRef.child(arg).remove();
+            };
+        }
+        
+        
+
+        var createClickHandler1 = function (arg, nameAR, nameEN, national_id, nationalityAR, nationalityEN, wk) {//, dayEN
+            return function () {
+
+                localStorage.setItem('key', arg);
+                localStorage.setItem('nameAR', nameAR);
+                localStorage.setItem('nameEN', nameEN);
+                localStorage.setItem('national_id', national_id);
+                localStorage.setItem('nationalityAR', nationalityAR);
+                localStorage.setItem('nationalityEN', nationalityEN);
+               // localStorage.setItem('working_days/1/dayEN', dayEN);
+             //  workingdays(wk);
+                
+                location.replace("edit-guide.html");
+
+
+            }
+        }
+
+        var workingdays = function (wk) {
+
+            return firebase.database().ref('/working_days'+ wk).once('value').then(function (snapshot) {
+                var dayEN1 = snapshot.val().dayEN; //maybe test here it is not null
+                localStorage.setItem('dayEN', dayEN);
+            });
+        }
+
+
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var tourname = tours[k].nameEN;
+            var nameAR = tours[k].nameAR;
+            var nameEN = tours[k].nameEN;
+            var national_id = tours[k].national_id;
+            var nationalityAR = tours[k].nationalityAR;
+            var nationalityEN = tours[k].nationalityEN;
+            var wk = tours[k].working_days;
+          //  var dayEN = tours[k].working_days.1.dayEN;
+         //   var dayEN = tours[k].dayEN;
+         
+            //console.log(tourname);
+            var lis = document.createElement('LI');
+            var textnode = document.createTextNode(tourname);
+            lis.appendChild(textnode);
+            lis.className = "tours";
+            document.getElementById("tourname").appendChild(lis);
+            var btn = document.createElement("A");
+            btn.href = "#";
+            btn.className = "btn btn-secondary ripple";
+            btn.innerHTML = "delete";
+
+            btn.onclick = createClickHandler(k);
+
+            document.getElementById("tourname").appendChild(btn);
+
+            var btn1 = document.createElement("A");
+            btn1.href = "#";
+            btn1.className = "btn btn-gradient-01";
+            btn1.innerHTML = "edit";
+
+            btn1.onclick = createClickHandler1(k, nameAR, nameEN, national_id, nationalityAR, nationalityEN, wk); //, dayEN
+
+            document.getElementById("tourname").appendChild(btn1);
+        }
+
+
+
+    }
+ 
+    
+    </script>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,133 @@
+<div class="row flex-row">  <!--  Container -->
+                        
+    <div class="col-xl-3 col-md-4 col-sm-6 col-remove" id="tourname">
+        <!-- Begin Card 1-->
+        <div class="has-shadow">
+            <div class="contact-card">
+                <!-- Begin Widget Image -->
+                <div>
+                    <span class="online badge-pulse-green"></span>
+                    <br>
+                    <h4 class="name"></h4>
+                </div>
+                <!-- Begin Widget Body -->
+                <div class="widget-body">
+                    <!--div class="job">Saudi</div>-->
+                    <div class="reviews owl-carousel">
+                        <div class="item">
+                            <div class="stats">
+                                <div class="row d-flex justify-content-between">
+                                   
+                                    <div class="col">
+                                        <span class="counter">12345678</span>
+                                        <span class="text"> Guide </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="counter">Tour Guided</span>
+                                        <span class="text">Type</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="quick-about">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-12">
+                                        <h4>Time</h4>
+                                        <span class="text"> Day: Monday </span>
+                                        <span class="text"> Duration: 2 Hours </span>
+                                        <span class="text"> From: 4 pm </span>
+                                        <span class="text"> To: 6 pm</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="btn-group" role="group">
+                            <a href="edit-Tour.html" class="btn btn-gradient-01" id="edit" >Edit</a>
+                            <a href="#" class="btn btn-secondary ripple" id="delete" >Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Widget Body -->
+            </div>
+        </div>
+        <!-- End Card 1 -->
+    </div>
+</div> <!-- End Container -->
+
+ <!--num of availabile Tours->
+                    <div class="col d-flex align-items-center">
+                        <div class="mr-auto p-2">
+                            <span class="display-items"> num of availabile Tours: 4 </span>
+                        </div>
+                    </div>
+                     <!-end num of availabile Tours-->
+
+
+
+                     <script>
+       
+                        document.getElementById('tournumber').value = localStorage.getItem('key');
+                        document.getElementById('tname').value = localStorage.getItem('tourName');
+                        document.getElementById('arname').value = localStorage.getItem('dayAR');
+                        document.getElementById('enname').value = localStorage.getItem('dayEN');
+                        document.getElementById('duration').value = localStorage.getItem('duration');
+                        document.getElementById('guide').value = localStorage.getItem('guide');
+                        document.getElementById('date').value = localStorage.getItem('tourDate');
+                        document.getElementById('typeAR').value = localStorage.getItem('typeAR');
+                        document.getElementById('typeEN').value = localStorage.getItem('typeEN');
+                function sub()
+                {
+                        
+                        
+                var tournumber= localStorage.getItem('key');
+                var tname= document.getElementById('tname').value;
+                var arname= document.getElementById('arname').value;
+                var ename= document.getElementById('enname').value;
+                var duration= document.getElementById('duration').value;
+                var guide= document.getElementById('guide').value;
+                var tdate= document.getElementById('date').value;
+                var artype;
+                var entype;
+                
+                        if (document.getElementById('opt-01').checked) {
+                     var artype = "جوله خاصه";
+                     var entype = "self guided";
+                }   
+                else {
+                       var artype = "جوله بمساعد";
+                       var entype = "Guided by a guide";
+                }        
+                
+                 result = savedata(tournumber, tname, arname, ename, duration, guide, tdate, artype, entype);
+                
+                
+                
+                }
+                
+                function savedata(tournumber, tname, arname, ename, duration, guide, tdate, artype, entype)
+                {
+                var tourRef = firebase.database().ref('tours/Availale_tours').child(parseInt(tournumber)).set({
+                    dayAR:arname,
+                    dayEN:ename, 
+                    duration:duration, 
+                    guide:guide, 
+                    tourDate:tdate, 
+                    tourName:tname, 
+                    typeAR:artype, 
+                    typeEN:entype
+                });   
+                
+                }
+                </script>
+
+
+
+
+
+.daterangepicker .daterangepicker_input input
+
